@@ -36,13 +36,15 @@ plt.tight_layout()
 plt.savefig('coeficientes.png')
 
 confusion = skm.confusion_matrix(y_test,lrm.predict(x_test))
+print(confusion)
 
 fig, ax = plt.subplots()
 ax.matshow(confusion)
 for i in range(0,10):
     for j in range(0,10):
-        c = confusion[j,i]/len(y_test[y_test == j])
-        ax.text(i, j, r'{:.2f}'.format(c), va = 'center', ha = 'center')
+        c = float(confusion[i,j]/len(y_test[y_test == i]))
+        print(c)
+        ax.text(j, i, r'{:.2f}'.format(c), va = 'center', ha = 'center')
 
 ax.xaxis.set_ticks_position('top') 
 ax.xaxis.set_label_position('top') 
